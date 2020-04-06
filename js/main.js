@@ -21,7 +21,7 @@
 
 // difficulty control
 
-var difficulty = parseInt(prompt('Seleziona un livello di difficoltà: \n0, \n1, \n2'));
+var difficulty = parseInt(prompt('Seleziona un livello di difficoltà: \n=> 0 \n=> 1 \n=> 2'));
 
 switch (difficulty) {
     case 0: 
@@ -61,6 +61,7 @@ for ( var i = 0; i < 10; i++ ) {
     var userNumber = parseInt(prompt('Inserisci un numero da 1 a ' + maxNumber));
 
     //  validation
+    
     while ( (userNumber < 1 || userNumber > maxNumber) || isNaN(userNumber) ) {
         userNumber = parseInt(prompt('Prego, scegli un numero da 1 a ' + maxNumber));
     }
@@ -84,5 +85,4 @@ for ( var i = 0; i < 10; i++ ) {
 
 // users score
 console.log('Il tuo punteggio è: ', score);
-
 
