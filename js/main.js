@@ -68,9 +68,6 @@ for ( var i = 0; i < 10; i++ ) {
     if (userArray.includes(userNumber) == true) {
     prompt('Hai già scelto questo numero, inserisci un altro!')
     } 
-      
-      
-    
 
     // feedback
     console.log('Il numero scalto dall\'utente è: ', userNumber);
