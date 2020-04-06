@@ -19,14 +19,30 @@
  * 
  **********************************************************************************************************************/
 
+// difficulty control
 
+var difficulty = parseInt(prompt('Seleziona un livello di difficoltà: \n0, \n1, \n2'));
 
-// 16 random numbers from 1 to 100
+switch (difficulty) {
+    case 0: 
+        maxNumber = 100;
+        break;
+    case 1:
+        maxNumber = 80;
+        break;
+    case 2:
+        maxNumber = 50;
+        break;
+    default:
+        maxNumber = false;
+}
+
+// 16 random numbers from 1 to maxNumber
 
 var cpuArray = [];
 
 for (var i = 0; i < 16; i++) {
-    var cpuNumber = getRandomNumber (1,100);
+    var cpuNumber = getRandomNumber (1,maxNumber);
     cpuArray.push(cpuNumber);
 }
 console.log('I numeri scelti dal computer sono: ', cpuArray); // debug
@@ -39,31 +55,37 @@ function getRandomNumber (min, max) {
 
 
 var userArray = [];
-
+var score = 0;
 // maximum number of attempts 10
 for ( var i = 0; i < 10; i++ ) {
-    var userNumber = parseInt(prompt('Inserisci un numero da 1 a 100'));
+    var userNumber = parseInt(prompt('Inserisci un numero da 1 a ' + maxNumber));
+
     //  validation
-    while ( (userNumber < 1 || userNumber > 100) || isNaN(userNumber) ) {
-        userNumber = parseInt(prompt('Prego, scegli un numero da 1 a 100'));
+    while ( (userNumber < 1 || userNumber > maxNumber) || isNaN(userNumber) ) {
+        userNumber = parseInt(prompt('Prego, scegli un numero da 1 a ' + maxNumber));
     }
      // check that the user does not enter the same number
-    if(userArray.includes(userNumber) == true) {
+    if (userArray.includes(userNumber) == true) {
     prompt('Hai già scelto questo numero, inserisci un altro!')
-    } else {
-        userArray.push(userNumber);
-    }
+    } 
+      
+      
+    
+
+    // feedback
     console.log('Il numero scalto dall\'utente è: ', userNumber);
     console.log(userArray);
 
     if ( cpuArray.includes(userNumber) == true ) {
         console.log('Spiacente, hai perso\nHai calpestato una mina!');
         break;
-    }    
+    } else {
+        score ++;
+        userArray.push(userNumber);
+    }
 }
 
 // users score
-console.log('Il tuo punteggio è: ', userArray[i]);
-
+console.log('Il tuo punteggio è: ', score);
 
 
