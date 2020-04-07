@@ -22,7 +22,7 @@
 // difficulty control
 
 var difficulty = parseInt(prompt('Seleziona un livello di difficoltà: \n=> 0 \n=> 1 \n=> 2'));
-var possibility;
+
 
 switch (difficulty) {
     case 0: 
