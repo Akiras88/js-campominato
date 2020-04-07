@@ -22,16 +22,20 @@
 // difficulty control
 
 var difficulty = parseInt(prompt('Seleziona un livello di difficoltà: \n=> 0 \n=> 1 \n=> 2'));
+var possibility;
 
 switch (difficulty) {
     case 0: 
         maxNumber = 100;
+        possibility = 86;
         break;
     case 1:
         maxNumber = 80;
+        possibility = 64;
         break;
     case 2:
         maxNumber = 50;
+        possibility = 34;
         break;
     default:
         maxNumber = 20;
@@ -59,11 +63,12 @@ function getRandomNumber (min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-
 var userArray = [];
 var score = 0;
+var lose = true;
 // maximum number of attempts 10
-for ( var i = 0; i < 10; i++ ) {
+
+while (( userArray.length < possibility ) && ( cpuArray.includes(userNumber) != true ) && ( lose == true )) {
     var userNumber = parseInt(prompt('Inserisci un numero da 1 a ' + maxNumber));
 
     //  validation
@@ -71,23 +76,31 @@ for ( var i = 0; i < 10; i++ ) {
     while ( (userNumber < 1 || userNumber > maxNumber) || isNaN(userNumber) ) {
         userNumber = parseInt(prompt('Prego, scegli un numero da 1 a ' + maxNumber));
     }
-     // check that the user does not enter the same number
+    // check that the user does not enter the same number
+
     if (userArray.includes(userNumber) == true) {
-    prompt('Hai già scelto questo numero, inserisci un altro!')
+        prompt('Hai già scelto questo numero, inserisci un altro!')
     } 
 
     // feedback
-    console.log('Il numero scalto dall\'utente è: ', userNumber);
+    console.log('Il numero scelto dall\'utente è: ', userNumber);
     console.log(userArray);
 
     if ( cpuArray.includes(userNumber) == true ) {
-        console.log('Spiacente, hai perso\nHai calpestato una mina!');
-        break;
+        console.log('--- GAME OVER ---\nHai calpestato una mina!');
+        lose = false;
     } else {
         score ++;
         userArray.push(userNumber);
     }
+
+    if ( userArray.length == possibility ) {
+        console.log('--> HAI VINTO! <--')
+    }
 }
+
+
+
 
 // users score
 console.log('Il tuo punteggio è: ', score);
