@@ -34,17 +34,23 @@ switch (difficulty) {
         maxNumber = 50;
         break;
     default:
-        maxNumber = false;
+        maxNumber = 20;
 }
 
 // 16 random numbers from 1 to maxNumber
 
 var cpuArray = [];
+var cpuNumber = [];
 
-for (var i = 0; i < 16; i++) {
-    var cpuNumber = getRandomNumber (1,maxNumber);
-    cpuArray.push(cpuNumber);
+while ( cpuArray.length < 16 ) {
+
+    cpuNumber = getRandomNumber (1,maxNumber);   
+ 
+    if ( cpuArray.includes(cpuNumber) == false ) {
+        cpuArray.push(cpuNumber);
+    }
 }
+
 console.log('I numeri scelti dal computer sono: ', cpuArray); // debug
 
 // random number function
